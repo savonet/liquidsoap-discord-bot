@@ -1,0 +1,16 @@
+{
+  "name": "liquidsoap-discord-bot",
+  "version": "1.0.0",
+  "description": "Discord bot for liquidsoap syntax highlighting",
+  "main": "bot.js",
+  "type": "module",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "author": "The Savonet Team",
+  "license": "GPL-2.0-or-later",
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "highlight.js": "^11.9.0"
+  }
+}
