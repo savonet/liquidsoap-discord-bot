@@ -11,6 +11,7 @@
   "license": "GPL-2.0-or-later",
   "dependencies": {
     "discord.js": "^14.14.1",
-    "highlight.js": "^11.9.0"
+    "highlight.js": "^11.9.0",
+    "highlightjs-liquidsoap": "^1.0.1"
   }
 }

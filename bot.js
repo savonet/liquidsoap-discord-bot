@@ -1,6 +1,6 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import hljs from 'highlight.js';
-import liquidsoap from './liquidsoap.js';
+import liquidsoap from 'highlightjs-liquidsoap';
 
 hljs.registerLanguage('liquidsoap', liquidsoap);
 hljs.registerLanguage('liq', liquidsoap);
