@@ -135,32 +135,35 @@ client.once('ready', () => {
 client.on('messageCreate', async (message) => {
   if (message.author.bot) return;
 
+  // Skip if already in a thread created by us
+  if (message.channel.isThread() && message.channel.name === 'Syntax Highlighted') return;
+
   const matches = [...message.content.matchAll(CODE_BLOCK_REGEX)];
   if (matches.length === 0) return;
 
-  for (const match of matches) {
-    const code = match[2].trim();
-    if (!code) continue;
+  try {
+    // Create a thread for the highlighted code
+    const thread = await message.startThread({
+      name: 'Syntax Highlighted',
+      autoArchiveDuration: 60
+    });
 
-    try {
+    for (const match of matches) {
+      const code = match[2].trim();
+      if (!code) continue;
+
       const ansiCode = highlightToAnsi(code);
 
       // Discord has a 2000 char limit, ansi block adds ~10 chars
       if (ansiCode.length > 1980) {
-        await message.reply({
-          content: '⚠️ Code too long to display with highlighting',
-          allowedMentions: { repliedUser: false }
-        });
+        await thread.send('⚠️ Code block too long to display with highlighting');
         continue;
       }
 
-      await message.reply({
-        content: '```ansi\n' + ansiCode + '\n```',
-        allowedMentions: { repliedUser: false }
-      });
-    } catch (err) {
-      console.error('Error highlighting code:', err);
+      await thread.send('```ansi\n' + ansiCode + '\n```');
     }
+  } catch (err) {
+    console.error('Error highlighting code:', err);
   }
 });
 

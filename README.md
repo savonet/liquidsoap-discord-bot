@@ -17,7 +17,7 @@ A Discord bot that provides syntax highlighting for Liquidsoap code blocks using
 
 1. Go to "OAuth2" > "URL Generator"
 2. Select scopes: `bot`
-3. Select permissions: `Send Messages`, `Read Message History`
+3. Select permissions: `Send Messages`, `Read Message History`, `Create Public Threads`, `Send Messages in Threads`
 4. Copy the generated URL and open it to invite the bot to your server
 
 ### 3. Run the Bot
